@@ -14,7 +14,7 @@ export function Navbar(){
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
             <Link className="nav-link text-dark" aria-current="page" to="/">Home</Link>
-            </li>
+            </li> 
             <li className="nav-item">
             <Link className="nav-link text-dark" to="/contact">Contact</Link>
             </li>
