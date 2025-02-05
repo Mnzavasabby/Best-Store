@@ -26,6 +26,21 @@ export default function ProductList() {
         getProduct();
     }, []);
 
+    function deleteProduct(id){
+        fetch("http://localhost:4000/products/" + id,{
+            method:"DELETE"
+        })
+        .then(response=>{
+            if(!response.ok){
+                throw new Error();
+            }
+            getProduct()   
+        })
+        .catch(error=>{
+            alert("unable to delete the product")
+        })
+    }
+
     return (
         <div className="container my-4">
             <h2 className="text-center mb-4">Products</h2>
@@ -75,7 +90,7 @@ export default function ProductList() {
                                     <Link className="btn btn-primary btn-sm me-1" to={`/admin/products/edit/${product.id}`}>
                                         Edit
                                     </Link>
-                                    <button type="button" className="btn btn-danger btn-sm">Delete</button>
+                                    <button type="button" className="btn btn-danger btn-sm" onClick={()=>deleteProduct(product.id)}>Delete</button>
                                 </td>
                             </tr>
                         ))
