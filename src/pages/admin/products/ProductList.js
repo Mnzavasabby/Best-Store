@@ -4,8 +4,15 @@ import { Link } from "react-router-dom";
 export default function ProductList() {
     const [products, setProducts] = useState([]);
 
+    // pagination functionality
+
+    const [currentPage,setCurrentPage]=useState(1)
+    const [totalPages, setTotalPages]=useState(2)
+    const pageSize=5
+
     function getProduct() {
-        fetch('http://localhost:4000/products?_sort=id&_order=desc')
+        let url='http://localhost:4000/products?_sort=id&_order=desc&_page=' + currentPage + '&_limit=' + pageSize
+        fetch(url)
             .then(response => {
                 if (!response.ok) {
                     throw new Error("Failed to fetch products");
