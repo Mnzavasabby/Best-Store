@@ -7,7 +7,7 @@ export default function ProductList() {
     // pagination functionality
 
     const [currentPage,setCurrentPage]=useState(1)
-    const [totalPages, setTotalPages]=useState(2)
+    const [totalPages, setTotalPages]=useState(1)
     const pageSize=5
 
     function getProduct() {
