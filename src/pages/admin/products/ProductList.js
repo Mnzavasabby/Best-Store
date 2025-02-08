@@ -14,10 +14,15 @@ export default function ProductList() {
         let url='http://localhost:4000/products?_sort=id&_order=desc&_page=' + currentPage + '&_limit=' + pageSize
         fetch(url)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error("Failed to fetch products");
+                if (response.ok) {
+                    let totalCount=response.headers.get('X-Total-Count')
+                    let pages=Math.ceil(totalCount/pageSize)
+                    setTotalPages(pages)
+                    return response.json();
                 }
-                return response.json();
+                throw new Error();
+                
+                
             })
             .then(data => {
                 console.log("Fetched Products:", data); // Debugging
